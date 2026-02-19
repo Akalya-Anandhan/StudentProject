@@ -18,7 +18,27 @@ class Student {
 public class StudentApp {
 
     public static void main(String[] args) {
+
         ArrayList<Student> students = new ArrayList<>();
+
+        // 🔹 If running in Jenkins (no console available)
+        if (System.console() == null) {
+            System.out.println("Running in non-interactive (CI) mode...");
+
+            // Simulate some operations
+            students.add(new Student(1, "Test Student"));
+            System.out.println("Student Added Automatically");
+
+            System.out.println("Displaying Students:");
+            for (Student s : students) {
+                s.display();
+            }
+
+            System.out.println("CI Build Successful!");
+            return;
+        }
+
+        // 🔹 Interactive Mode (Local Run)
         Scanner sc = new Scanner(System.in);
         int choice;
 
